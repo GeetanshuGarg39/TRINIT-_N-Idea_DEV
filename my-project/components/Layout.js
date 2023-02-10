@@ -1,5 +1,4 @@
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
 
 export default function Layout({children}) {
     return(
@@ -9,8 +8,8 @@ export default function Layout({children}) {
                     <Navbar/>
                 </nav>
             </header>
-            <main>
-                <Sidebar/>
+            
+            <main>                
                 {children}
             </main>
         </>
