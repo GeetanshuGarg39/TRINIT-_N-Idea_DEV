@@ -64,6 +64,7 @@ export default function Sidebar() {
                                 <span className="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
                             </Link>
                         </li>
+                        
                     </ul>
                 </div>
             </aside>  

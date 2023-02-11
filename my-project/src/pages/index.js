@@ -70,8 +70,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>      
-      <Sidebar/>   
-      <button  className=" bg-emerald-600 text-center text-white p-2 mt-4 rounded-full h-1/3  w-full active:bg-green-400"  onClick={logout}> Logout </button>
+        
     </>
   )
 }
