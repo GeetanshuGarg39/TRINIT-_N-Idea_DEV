@@ -1,6 +1,18 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import pb from "..//components/lib/pocketbase"
 
 export default function Sidebar() {
+    const [user,setUser]=useState();
+    useEffect(()=>{
+        if(pb.authStore.isValid){
+            setUser(pb.authStore.model.username.toString())
+        }
+        else{
+            setUser("")
+        }
+    })
+
     return (
         <>
             <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -13,6 +25,11 @@ export default function Sidebar() {
             <aside id="sidebar-multi-level-sidebar" className="absolute left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <ul className="space-y-2">
+                        <li>
+                            <h1 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <span className="ml-3">{user?"Hello "+ user:"Login to access all features"}</span>
+                            </h1>
+                        </li>
                         <li>
                             <Link href="/" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <svg aria-hidden="true" className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
