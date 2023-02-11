@@ -1,13 +1,14 @@
 import Sidebar from "components/Sidebar";
 import pb from "components/lib/pocketbase"
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 
 export default function Home() {
     const [content,setContent]=useState();
     const [postData, setPostData] = useState([]);
     const getAllPosts = async () => {
-        const resultList = await pb.collection('expert_post').getList(1, 50, {sort:"-created", '$autoCancel': false,expand: 'author,comment'
+        const resultList = await pb.collection('expert_post').getList(1, 50, {sort:"-created", '$autoCancel': false,expand: 'author,comment,comment.author'
         });
         setPostData(resultList.items)
     }
@@ -22,7 +23,9 @@ export default function Home() {
             "author": pb.authStore.model.id,
             "content": content
         };
-        const record = await pb.collection('comment').create(data);
+        if(content){
+            const record = await pb.collection('comment').create(data);
+            
         console.log(record)
         console.log(id)
         console.log(index)
@@ -32,7 +35,12 @@ export default function Home() {
             ]
         };
         const record2 = await pb.collection('expert_post').update(id, comment);
+        }
+        else{
+            alert("Comment can not be empty");
+        }
     }
+    console.log(postData)
 
     return (
         <>
@@ -66,6 +74,14 @@ export default function Home() {
                     </a>
                     <input type='text' name='content' placeholder="Add comment" value={content} onChange={(e)=>{setContent(e.target.value)}} ></input>
                     <button onClick={()=>{create_comment(post.id,index)}}>Click Me</button>
+                    {post.expand.comment?post.expand.comment.map((comment)=>{
+                        return<>
+                        <h1>{comment.expand.author.username}</h1>
+                        <h2>{comment.content}</h2>
+
+                        </>
+                    }):""}
+                    {console.log(post.expand.comment)}
                 </div>
                         </>
                     )
