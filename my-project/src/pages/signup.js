@@ -28,8 +28,14 @@ const signup = () => {
       <input className = "p-2 m-3 w-full h-1/3 bg-slate-100 rounded-xl " required type="email" placeholder="Email" name = "email" {...register('email')} ></input>
       <input className = "p-2 m-3 w-full h-1/3 bg-slate-100 rounded-xl " required type = "password" placeholder="Password" name = "password" {...register('password')}></input>
       <input className = "p-2 m-3 w-full h-1/3 bg-slate-100 rounded-xl " required type = "password" placeholder="Confirm Password" name = "passwordConfirm" {...register('passwordConfirm')}></input>
-      <input className = "p-2 m-3 w-full h-1/3 bg-slate-100 rounded-xl " required type = "text" placeholder="Farmer/Expert" name = "group" {...register('group')}></input>
+      <div className='flex flex-col w-full '>
+      <label>Want to log in as:</label>
+      <label className='flex items-center p-2 font-xl'><input className = " bg-slate-100 rounded-xl items-left m-2 " required type="radio"  name = "group" {...register('group')}/>Farmer</label>
+      
+      <label className='flex items-center p-2 font-xl'><input className = " bg-slate-100 rounded-xl m-2 " required type="radio"  name = "group" {...register('group')}/>Enthusiast</label>
+      </div>
       <button className=" bg-emerald-600 text-center text-white p-2 mt-4 rounded-full h-1/3  w-full active:bg-green-400" type = "Submit" disabled={isLoading}>{isLoading? "Loading":"Sign up"}</button>
+      
     </form>
     <div className="flex flex-col w-1/4 p-6 mt-4 items-center rounded-2xl justify-center drop-shadow-2xl bg-white">
         <h2>Already a user? <a href="/login" className="text-blue">Log In</a></h2>
