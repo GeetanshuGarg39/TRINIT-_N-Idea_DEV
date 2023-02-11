@@ -1,9 +1,5 @@
 import Link from 'next/link'
-import uselogout from "./Hooks/useLogout";
-
-
 export default function Navbar(props) {
-    // const logout=uselogout();
     return (
         <>
 
