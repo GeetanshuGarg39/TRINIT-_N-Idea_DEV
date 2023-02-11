@@ -6,10 +6,11 @@ const signup = () => {
   const router = useRouter()
   const {register,handleSubmit}= useForm();
   const [isLoading,setLoading]=useState(false);
-
+  const [group,setGroup]=useState("Farmer");
   async function sign_up(data){
       setLoading(true)
       try{
+          data.group=group;
           const record = await pb.collection('users').create(data);
           router.push('/')
       }catch(error){
@@ -30,9 +31,8 @@ const signup = () => {
       <input className = "p-2 m-3 w-full h-1/3 bg-slate-100 rounded-xl " required type = "password" placeholder="Confirm Password" name = "passwordConfirm" {...register('passwordConfirm')}></input>
       <div className='flex flex-col w-full '>
       <label>Want to log in as:</label>
-      <label className='flex items-center p-2 font-xl'><input className = " bg-slate-100 rounded-xl items-left m-2 " required type="radio"  name = "group" {...register('group')}/>Farmer</label>
-      
-      <label className='flex items-center p-2 font-xl'><input className = " bg-slate-100 rounded-xl m-2 " required type="radio"  name = "group" {...register('group')}/>Enthusiast</label>
+      <label className='flex items-center p-2 font-xl'><input className = " bg-slate-100 rounded-xl items-left m-2 " required type="radio"   name = "group" value="Farmer" {...register('group')}/>Farmer</label>
+      <label className='flex items-center p-2 font-xl'><input className = " bg-slate-100 rounded-xl m-2 " required type="radio"  name = "group" value="Enthusiast" {...register('group')} />Enthusiast</label>
       </div>
       <button className=" bg-emerald-600 text-center text-white p-2 mt-4 rounded-full h-1/3  w-full active:bg-green-400" type = "Submit" disabled={isLoading}>{isLoading? "Loading":"Sign up"}</button>
       
