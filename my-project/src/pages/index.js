@@ -7,11 +7,12 @@ export default function Home() {
 
     const [postData, setPostData] = useState([]);
     const getAllPosts = async () => {
-        const resultList = await pb.collection('expert_post').getList(1, 50, { '$autoCancel': false });
+        const resultList = await pb.collection('expert_post').getList(1, 50, { '$autoCancel': false,expand: 'author'
+        });
         setPostData(resultList.items)
     }
 
-    // console.log(postData)
+    console.log(postData)
 
     useEffect(()=>{
         getAllPosts();
@@ -32,7 +33,7 @@ export default function Home() {
                             <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         </div>
                         <div class="font-medium dark:text-white">
-                            <div>Jese Leos</div>
+                            <div>{post.expand.author.username} <span className=" text-green-500">#{post.expand.author.group} </span></div>
                             <div class="text-sm text-gray-500 dark:text-gray-400">Joined in August 2014</div>
                         </div>
                     </div>
