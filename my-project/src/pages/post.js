@@ -10,11 +10,15 @@ const post = () => {
   async function createPost(data){
       setLoading(true)
       try{
+        if(pb.authStore.isValid){
           formData.append("title",data.title)
           formData.append("description",data.description)
           formData.append("author",pb.authStore.model.id.toString())
           formData.append("image",data.image[0])
-          const authData=await pb.collection("expert_post").create(formData);
+          const authData=await pb.collection("expert_post").create(formData);}
+        else{
+            alert("Please Log in  to create a post")
+        }
       }catch(error){
           alert(error)
       }
