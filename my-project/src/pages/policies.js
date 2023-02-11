@@ -1,6 +1,18 @@
 import Sidebar from "components/Sidebar"
+import pb from "components/lib/pocketbase"
+import { useEffect } from "react";
 
 const policies = () => {
+
+    const getAllPolicies = async () => {
+        const resultList = await pb.collection('news_card').getList(1, 50, { '$autoCancel': false });
+        console.log(resultList.items);        
+    }
+
+    useEffect(()=>{
+        getAllPolicies();
+    }, [])
+
   return (
     <>
     <Sidebar/>
