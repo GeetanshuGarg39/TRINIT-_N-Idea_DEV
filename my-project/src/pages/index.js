@@ -1,23 +1,23 @@
 import Sidebar from "components/Sidebar";
-import { useRouter } from 'next/router';
-import { useEffect , useState} from 'react';
-import pb from '..//..//components/lib/pocketbase';
+// import { useRouter } from 'next/router';
+// import { useEffect , useState} from 'react';
+// import pb from '..//..//components/lib/pocketbase';
 
 export default function Home() {
-  const router= useRouter();
-  const [isLogged,setLogged]=useState(false);
-  useEffect(()=>{
-    if(pb.authStore.isValid){
-      setLogged(true);
-    }else{
-      router.push("/login");
-    }
-  })
-  async function logout(){
-    pb.authStore.clear();
-    setLogged(false);
-    router.push("/login");
-  }
+//   const router= useRouter();
+//   const [isLogged,setLogged]=useState(false);
+//   useEffect(()=>{
+//     if(pb.authStore.isValid){
+//       setLogged(true);
+//     }else{
+//       router.push("/login");
+//     }
+//   })
+//   async function logout(){
+//     pb.authStore.clear();
+//     setLogged(false);
+//     router.push("/login");
+//   }
   return (
     <>     
      <Sidebar/>           
