@@ -2,6 +2,7 @@ import Sidebar from "components/Sidebar";
 import pb from "components/lib/pocketbase"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Section from "components/Section";
 
 
 export default function Home() {
@@ -51,7 +52,8 @@ export default function Home() {
     return (
         <>
             <Sidebar />
-            <div className="p-4 sm:ml-64 max-w-4xl  h-full">
+            <Section/>
+            <div className="p-4 sm:ml-64 max-w-4xl mr-5  h-full">
 
                 {postData.map((post, index) => {
                     return (
@@ -146,6 +148,7 @@ export default function Home() {
                 })}
 
             </div>
+            
 
         </>
     )

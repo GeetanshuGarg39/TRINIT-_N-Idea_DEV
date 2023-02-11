@@ -1,6 +1,7 @@
 import Sidebar from "components/Sidebar"
 import pb from "components/lib/pocketbase"
 import { useEffect, useState } from "react";
+import Section from "components/Section";
 
 const policies = () => {
     const [newsList,setNewsList]=useState([]);
@@ -19,6 +20,7 @@ const policies = () => {
   return (
     <>
     <Sidebar/>
+    <Section/>
     <div className = "flex flex-wrap max-w-4xl p-6 h-scereen sm:ml-64">
     {isLoaded?
             newsList.map((post)=>{

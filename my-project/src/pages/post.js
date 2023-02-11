@@ -2,6 +2,7 @@ import Sidebar from "components/Sidebar"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import pb from '..//..//components/lib/pocketbase'
+import Section from "components/Section";
 
 const post = () => {
   const formData = new FormData();
@@ -28,7 +29,7 @@ const post = () => {
   return (
     <>
     <Sidebar/>
-    
+    <Section/>
     <form className="flex flex-col max-w-4xl p-4 sm:ml-64 h-screen" onSubmit={handleSubmit(createPost)}>
     <h1 className=" text-center text-3xl py-5">Create Post</h1>
         
