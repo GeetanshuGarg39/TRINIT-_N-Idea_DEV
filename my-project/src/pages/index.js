@@ -7,7 +7,7 @@ export default function Home() {
 
     const [postData, setPostData] = useState([]);
     const getAllPosts = async () => {
-        const resultList = await pb.collection('expert_post').getList(1, 50, { '$autoCancel': false,expand: 'author'
+        const resultList = await pb.collection('expert_post').getList(1, 50, {sort:"-created", '$autoCancel': false,expand: 'author'
         });
         setPostData(resultList.items)
     }
